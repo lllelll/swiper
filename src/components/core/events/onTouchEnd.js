@@ -34,14 +34,14 @@ export default function (event) {
   if (swiper.allowClick) {
     swiper.updateClickedSlide(e);
     swiper.emit('tap', e);
-    if (timeDiff < 300 && (touchEndTime - data.lastClickTime) > 300) {
+    if (timeDiff < 100 && (touchEndTime - data.lastClickTime) > 100) {
       if (data.clickTimeout) clearTimeout(data.clickTimeout);
       data.clickTimeout = Utils.nextTick(() => {
         if (!swiper || swiper.destroyed) return;
         swiper.emit('click', e);
-      }, 300);
+      }, 100);
     }
-    if (timeDiff < 300 && (touchEndTime - data.lastClickTime) < 300) {
+    if (timeDiff < 100 && (touchEndTime - data.lastClickTime) < 100) {
       if (data.clickTimeout) clearTimeout(data.clickTimeout);
       swiper.emit('doubleTap', e);
     }
